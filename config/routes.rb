@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
+  resources :messages
+
   root 'welcome#index'
-  get '/:id' => 'messages#show'
+  #get 'messages/search', to: "messages#search"
+  #get 'messages/new', to: "messages#new"
+
+  #get '/nybesked', to: 'messages#new'
+  #get ':id', to: 'messages#show', constraints: { id: /\d+/ }
+  #get '[:id, :msg]', to: 'messages#'
+  #post 'messages/search', to: 'messages#search'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

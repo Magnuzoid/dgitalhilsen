@@ -11,6 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+
+//= require message
 //= require jquery_ujs
-//= require turbolinks
+//= turbolinks
+//= require fabric
+
 //= require_tree .

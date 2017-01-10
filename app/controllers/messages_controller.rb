@@ -1,29 +1,63 @@
 class MessagesController < ApplicationController
+  before_action :set_message, only: [:show, :edit, :update, :destroy]
 
+  def new
+    @message = Message.new
+  end
 
-  def create
-
+  def index
+    #@messages = Message.search(params[:search])
+    if params[:search]
+      @messages = Message.search(params[:search]).order("created_at DESC")
+    else
+      @messages = Message.all.order('created_at DESC')
+    end
   end
 
   def show
-    if Message.exists?(id: params[:id])
+    # if Message.exists?(id: params[:id])
+    #   @message = Message.find(params[:id])
+    # else
+    #   redirect_to messages
+    # end
 
-      @message = Message.find(params[:id])
-      @message.update_attribute('show_at', Time.now.getutc)
+  end
 
-      #check if message is expired
-      if @message.show_at > @message.created_at.advance(minutes: 120)
-
-        @message.msg = "message expired :("
-      else
-
-      end
-
-
-      #@message[:shown_at] => @last_viewed
+  def create
+    @message = Message.new( message_params )
+    if @message.save
+        flash[:success] = "Drawing was succesfully added to database"
+        #redirect_to message_path(@message)
     else
-      redirect_to "/sorry.html"
+        render 'new'
     end
+    respond_to do |format|
+      format.html { redirect_to message_path(@message) }
+      format.js
+    end
+    #redirect_to message_path(@message)
+  end
+
+  def destroy
+    @message.destroy
+    respond_to do |format|
+      format.html { redirect_to messages_path, notice: 'Hilsen hermed slettet.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def save
+    @message.save
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_message
+    @message = Message.find(params[:id])
+  end
+
+  def message_params
+      params.require(:message).permit(:msg)
   end
 
 

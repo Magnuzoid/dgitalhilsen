@@ -1,7 +1,18 @@
+<%= render 'canvas'%>
 <% if !@message[:msg].blank? %>
+  <strong>msg:</strong>
+  <div id="json" class="value"><%= @message[:msg] %></div>
+  <strong>id:</strong>
+  <%= @message[:id] %>
+  <strong>params:</strong>
 
-  <%= @message[:msg].html_safe %>
+  <script>
+  $(document).ready(function(){
+    initCanvas();
+    lockAllElements();
+  });
 
+  </script>
 <% else %>
 Sorry message is blank..
 <% end %>
