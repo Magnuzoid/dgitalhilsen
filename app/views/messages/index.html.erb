@@ -1,19 +1,6 @@
-<%= form_tag(messages_path, method: :get) do %>
-  <%= label_tag(:search, "Search for:") %>
-  <%= text_field_tag(:search, params[:search]) %>
-  <%= submit_tag("Search") %>
-<% end %>
+<%= render "lookup" %>
 <ul>
-  <% @messages.each do |message|%>
-    <li><%= message.id %>
-    <%= link_to "show", message_path(message) %>
-    <%= link_to "delete", message_path(message),
-                          :method => :DELETE,
-                          :data => { :confirm => "Are you sure?" },
-                          :class => "delete-message"
-                          %>
-
-  </li>
-  <% end %>
+  <%= render 'messages', obj: @messages %>
   <%= will_paginate %>
 </ul>
+<%= link_to "Send ny Hilsen", new_message_path %>

@@ -1,0 +1,11 @@
+<% obj.each do |message|%>
+  <li><%= message.id %>
+  <%= link_to "show", message_path(message) %>
+  <%= link_to "delete", message_path(message),
+                        :method => :DELETE,
+                        :data => { :confirm => "Are you sure?" },
+                        :class => "delete-message"
+                        %>
+
+</li>
+<% end %>

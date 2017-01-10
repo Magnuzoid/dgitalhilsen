@@ -1,1 +1,11 @@
-hej2
+<%= form_tag(messages_path, method: :get, :id => "lookup-form") do %>
+  <%= label_tag(:search, "Søg på ID:", class: "hide") %>
+  <%= text_field_tag(:search, params[:search], placeholder: "Indtast venligst ID") %>
+  <%= submit_tag("Search", class: "hide") %>
+<% end %>
+<script type="text/javascript">
+console.log("lookup");
+  $(function(){
+    autoSearch();
+  });
+</script>

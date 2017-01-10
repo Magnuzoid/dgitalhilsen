@@ -62,6 +62,8 @@ function initialize() {
       }
   });
 
+  autoSearch();
+
   submitBtn.on('click', function(e){
     //e.preventDefault();
     var hejsa = JSON.stringify(canvas);
@@ -83,6 +85,14 @@ function lockAllElements() {
 });
 }
 
+function autoSearch() {
+  var searchField = $("#search").keyup(function(e){
+        $("#lookup-form").submit();
+    });
+
+  var searchButton = $("#search-form input[type=submit]").addClass("hide");
+
+}
 
 function initCanvas(){
   console.log("init canvas");
