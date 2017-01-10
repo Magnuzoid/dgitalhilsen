@@ -3,6 +3,8 @@ class Message < ActiveRecord::Base
 
   def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
-    where("id like ?", "%#{query}%") 
+    where("id like ?", "%#{query}%")
   end
+
+  self.per_page = 10
 end

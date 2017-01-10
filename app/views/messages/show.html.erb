@@ -1,7 +1,8 @@
-<%= render 'canvas'%>
 <% if !@message[:msg].blank? %>
+<%= link_to "Tilbage til oversigt", messages_path %>
+<%= render 'canvas'%>
   <strong>msg:</strong>
-  <div id="json" class="value"><%= @message[:msg] %></div>
+  <div id="json" class="value hide"><%= @message[:msg] %></div>
   <strong>id:</strong>
   <%= @message[:id] %>
   <strong>params:</strong>

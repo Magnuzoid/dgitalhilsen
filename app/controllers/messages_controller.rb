@@ -6,12 +6,15 @@ class MessagesController < ApplicationController
   end
 
   def index
+    #@messages.paginate(:page => params[:page])
     #@messages = Message.search(params[:search])
     if params[:search]
-      @messages = Message.search(params[:search]).order("created_at DESC")
+      @messages = Message.search(params[:search]).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
     else
-      @messages = Message.all.order('created_at DESC')
+      @messages = Message.all.order('created_at DESC').paginate(:page => params[:page])
     end
+
+
   end
 
   def show

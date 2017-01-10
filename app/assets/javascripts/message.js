@@ -3,11 +3,18 @@
 var canvas;
 
 $(document).ready(function(){
+
+  if (document.getElementById("canvas")) {
+    canvas = new fabric.Canvas('canvas');
+  }
+
   initialize();
 });
 
 function initialize() {
-  canvas = new fabric.Canvas('canvas');
+
+
+
   var rectButton = document.getElementById("create-rect");
   var submitBtn = $(".message-submit");
 
