@@ -11,6 +11,6 @@
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 <%= yield %>
-
+<%= link_to "Log out", destroy_user_session_path, method: "delete" %>
 </body>
 </html>

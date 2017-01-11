@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :messages
+  resources :user_messages, except: [:show, :edit, :update]
 
   root 'welcome#index'
   #get 'messages/search', to: "messages#search"

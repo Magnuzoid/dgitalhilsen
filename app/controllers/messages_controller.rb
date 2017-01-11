@@ -1,17 +1,23 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
+  #before_action :get_user, only: [:edit, :update, :destroy]
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+
 
   def new
     @message = Message.new
+    #@message = @user.messages.new
   end
 
   def index
     #@messages.paginate(:page => params[:page])
     #@messages = Message.search(params[:search])
+
     if params[:search]
-      @messages = Message.search(params[:search]).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+      @messages = current_user.messages.search(params[:search]).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+
     else
-      @messages = Message.all.order('created_at DESC').paginate(:page => params[:page])
+      @messages = current_user.messages.paginate(:page => params[:page])
     end
 
 
@@ -28,6 +34,8 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new( message_params )
+    @message.user = current_user
+
     if @message.save
         flash[:success] = "Drawing was succesfully added to database"
         #redirect_to message_path(@message)
@@ -59,9 +67,14 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
   end
 
-  def message_params
-      params.require(:message).permit(:msg)
+  def get_user
+    @user = current_user
   end
+
+  def message_params
+      params.require(:message).permit(:msg, :user_id)
+  end
+
 
 
 end

@@ -1,5 +1,6 @@
-<%= form_for @message, :action => :save, :method => :post do |f| %>
+<%= form_for @message, user: current_user,
+                       :action => :save,
+                       :method => :post do |f| %>
   <%= f.text_field :msg %>
-  <%#= f.text_area :body, size: "60x12" %>
   <%= f.submit "Create", class: "message-submit" %>
 <% end %>
