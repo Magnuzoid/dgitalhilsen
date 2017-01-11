@@ -3,6 +3,7 @@
   <li>
     <%= message.id %>
     <%= message.user_id %>
+    <%= message.title %>
     <%= link_to "show", message_path(message) %>
     <%= link_to "delete", message_path(message),
                           :method => :DELETE,

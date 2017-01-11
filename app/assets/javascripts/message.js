@@ -12,9 +12,6 @@ $(document).ready(function(){
 });
 
 function initialize() {
-
-
-
   var rectButton = document.getElementById("create-rect");
   var submitBtn = $(".message-submit");
 
@@ -65,9 +62,9 @@ function initialize() {
   autoSearch();
 
   submitBtn.on('click', function(e){
-    //e.preventDefault();
+    e.preventDefault();
     var hejsa = JSON.stringify(canvas);
-    //console.log(hejsa);
+    //console.log("event stoppet");
     $("#message_msg").val(hejsa);
     $("#new_message").submit();
   });

@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
       @messages = current_user.messages.search(params[:search]).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
 
     else
-      @messages = current_user.messages.paginate(:page => params[:page])
+      @messages = current_user.messages.order("created_at DESC").paginate(:page => params[:page])
     end
 
 
@@ -33,18 +33,22 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.new( message_params )
-    @message.user = current_user
-
-    if @message.save
-        flash[:success] = "Drawing was succesfully added to database"
-        #redirect_to message_path(@message)
-    else
-        render 'new'
-    end
+    #@message = Message.new( message_params )
+    @user = current_user
+    @message = @user.messages.create( message_params )
+    #@message.user = current_user
     respond_to do |format|
-      format.html { redirect_to message_path(@message) }
-      format.js
+      if @message.save
+          flash[:success] = "Drawing was succesfully added to database"
+          #redirect_to message_path(@message)
+          format.html { redirect_to message_path(@message) }
+          format.js { render :js => "window.location = '/messages/#{@message.id}'" }
+      else
+          #flash[:notice] = @message.errors.full_messages
+          #format.html { render :action => 'new' }
+          format.html { redirect_to new_message_path(@message) }
+          format.js# create.js.erb
+      end
     end
     #redirect_to message_path(@message)
   end
@@ -72,7 +76,7 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-      params.require(:message).permit(:msg, :user_id)
+      params.require(:message).permit(:msg, :title)
   end
 
 

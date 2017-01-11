@@ -1,6 +1,10 @@
-<%= form_for @message, user: current_user,
-                       :action => :save,
+<%= form_for @message, :action => :save,
+                       :remote => :true,
                        :method => :post do |f| %>
-  <%= f.text_field :msg %>
+  <div class="label">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <%= f.text_field :msg%>
   <%= f.submit "Create", class: "message-submit" %>
 <% end %>

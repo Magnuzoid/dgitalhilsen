@@ -1,1 +1,18 @@
-$(".shape-button").hide();
+//$(".shape-button").hide();
+console.log("create.js.erb");
+
+<% if @message.errors.any? %>
+var area = $("#flash_messages");
+area.html("");
+var warning = [];
+
+<% @message.errors.each do |key, value| %>
+  warning.push("<%= j key.to_s %> <%= j value.to_s %><br />");
+<% end %>
+
+var henning = $(warning).each(function(index){
+  console.log(warning[index]);
+  $('<li>' + warning[index] + '</li>').appendTo(area);
+
+});
+<% end %>

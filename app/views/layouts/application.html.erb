@@ -7,10 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><%= value %></div>
+<% if params[:controller] == "messages" && params[:action] != "index"%>
+  <%= link_to "Tilbage til oversigt", messages_path %>
 <% end %>
+<div id="flash_messages">
+  <%= render 'shared/flash_messages' if !flash.empty? %>
+</div>
 <%= yield %>
-<%= link_to "Log out", destroy_user_session_path, method: "delete" %>
+
+<div class="log-out-button">
+  <%= link_to "Log out", destroy_user_session_path, method: "delete" %>
+</div>
 </body>
 </html>

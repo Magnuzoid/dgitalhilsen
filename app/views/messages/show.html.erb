@@ -1,11 +1,11 @@
 <% if !@message[:msg].blank? %>
-<%= link_to "Tilbage til oversigt", messages_path %>
 <%= render 'canvas'%>
-  <strong>msg:</strong>
+  <% #field for json data %>
   <div id="json" class="value hide"><%= @message[:msg] %></div>
-  <strong>id:</strong>
-  <%= @message[:id] %>
-  <strong>params:</strong>
+  <% #field for title %>
+  <strong>Title:</strong>
+  <%= @message[:title] %>
+
 
   <script>
   $(document).ready(function(){
