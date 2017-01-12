@@ -43,11 +43,11 @@ function autoSearch() {
   var searchField = $("#search");
 
   searchField.on("change keyup paste", function(e){
-    var valueChecker = searchField.val().length;
+    //var valueChecker = searchField.val().length;
 
-    if (valueChecker >= 3){
+    //if (valueChecker >= 3){
       $("#lookup-form").submit();
-    }
+    //}
 
   });
 
