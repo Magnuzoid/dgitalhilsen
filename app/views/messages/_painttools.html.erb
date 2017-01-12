@@ -1,3 +1,50 @@
   <button id="create-rect" class="shape-button">Square</button>
   <button id="create-oval" class="shape-button">Circle</button>
   <button id="create-tri" class="shape-button">Triangle</button>
+<script type="text/javascript">
+  $(function(){
+    $(".shape-button").on('click', function(e){
+      e.preventDefault;
+      var clickedButton = $(e.target);
+
+      switch(clickedButton.attr("id")) {
+        case "create-rect":
+        console.log("Firkant");
+          var rect = new fabric.Rect({
+              top : 100,
+              left : 100,
+              width : 60,
+              height : 70,
+              fill : 'red'
+          });
+          canvas.add(rect);
+          break;
+
+        case "create-oval":
+          console.log("Oval");
+          var circle = new fabric.Circle({
+                radius: 20,
+                fill: 'green',
+                left: 100,
+                top: 100
+          });
+          canvas.add(circle);
+          break;
+
+        case "create-tri":
+          console.log("triangle");
+          var triangle = new fabric.Triangle({
+                              width: 20,
+                              height: 30,
+                              fill: 'blue',
+                              left: 50,
+                              top: 50
+          });
+          canvas.add(triangle);
+          break;
+        default:
+          break;
+        }
+    });
+  });
+</script>

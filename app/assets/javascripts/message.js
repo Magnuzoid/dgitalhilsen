@@ -15,50 +15,6 @@ function initialize() {
   var rectButton = document.getElementById("create-rect");
   var submitBtn = $(".message-submit");
 
-  $(".shape-button").on('click', function(e){
-    e.preventDefault;
-    var clickedButton = $(e.target);
-
-    switch(clickedButton.attr("id")) {
-      case "create-rect":
-      console.log("Firkant");
-        var rect = new fabric.Rect({
-            top : 100,
-            left : 100,
-            width : 60,
-            height : 70,
-            fill : 'red'
-        });
-        canvas.add(rect);
-        break;
-
-      case "create-oval":
-        console.log("Oval");
-        var circle = new fabric.Circle({
-              radius: 20,
-              fill: 'green',
-              left: 100,
-              top: 100
-        });
-        canvas.add(circle);
-        break;
-
-      case "create-tri":
-        console.log("triangle");
-        var triangle = new fabric.Triangle({
-                            width: 20,
-                            height: 30,
-                            fill: 'blue',
-                            left: 50,
-                            top: 50
-        });
-        canvas.add(triangle);
-        break;
-      default:
-        break;
-      }
-  });
-
   autoSearch();
 
   submitBtn.on('click', function(e){
@@ -83,9 +39,17 @@ function lockAllElements() {
 }
 
 function autoSearch() {
-  var searchField = $("#search").keyup(function(e){
-        $("#lookup-form").submit();
-    });
+
+  var searchField = $("#search");
+
+  searchField.on("change keyup paste", function(e){
+    var valueChecker = searchField.val().length;
+
+    if (valueChecker >= 3){
+      $("#lookup-form").submit();
+    }
+
+  });
 
   var searchButton = $("#search-form input[type=submit]").addClass("hide");
 
@@ -95,16 +59,10 @@ function initCanvas(){
   console.log("init canvas");
   j = $("#json.value").text();
   json = JSON.parse(j);
-  //console.log(json);
-  //canvas.deactivateAll();
-  //var jarl = JSON.stringify(j);
-  //console.log(j);
-
   canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
   canvas.renderAll;
-  //console.log(canvas);
-  //console.log(JSON.stringify(canvas.toDatalessJSON()));
-  //console.log(canvas);
-  //console.log(test);
-  //canvas.loadFromJSON());
 }
+
+$(function(){
+  $("#")
+});

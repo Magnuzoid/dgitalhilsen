@@ -1,0 +1,8 @@
+<ul>
+  <% if obj.blank? %>
+    <li>Sorry, no results matching <%= params[:search] %></li>
+  <% else %>
+    <%= render 'messages', obj: obj %>
+  <% end %>
+</ul>
+<%= will_paginate %>

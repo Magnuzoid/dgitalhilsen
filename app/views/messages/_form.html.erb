@@ -5,6 +5,9 @@
     <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
-  <%= f.text_field :msg%>
+
+  <%= render 'canvas' %>
+  <%= f.text_field :msg, class: "hide"%>
   <%= f.submit "Create", class: "message-submit" %>
 <% end %>
+<%= render 'painttools' %>

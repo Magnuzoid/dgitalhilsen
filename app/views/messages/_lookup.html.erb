@@ -1,10 +1,10 @@
-<%= form_tag(messages_path, method: :get, :id => "lookup-form") do %>
+<%# byebug %>
+<%= form_tag(messages_path, method: :get, :id => "lookup-form", remote: true) do %>
   <%= label_tag(:search, "Søg på ID:", class: "hide") %>
   <%= text_field_tag(:search, params[:search], placeholder: "Indtast venligst ID") %>
-  <%= submit_tag("Search", class: "hide") %>
+  <%= submit_tag("Search", :name => nil, class: "hide") %>
 <% end %>
 <script type="text/javascript">
-console.log("lookup");
   $(function(){
     autoSearch();
   });

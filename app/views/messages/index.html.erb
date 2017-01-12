@@ -1,6 +1,5 @@
-<%= render "lookup" %>
-<ul>
-  <%= render 'messages', obj: @messages %>
-  <%= will_paginate %>
-</ul>
+<%= render "lookup"%>
+<div id="message-list">
+  <%= render "message_list", obj: @messages %>
+</div>
 <%= link_to "Send ny Hilsen", new_message_path %>
